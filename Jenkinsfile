@@ -47,5 +47,37 @@ pipeline{
           }
       }
     }
+    stage('Prepare File') {
+            steps {
+                script {
+                    // Create a dummy file to transfer
+                    sh '''
+                    echo "This is a test file for transfer" > /tmp/testfile.txt
+                    '''
+                }
+            }
+        }
+        stage('Transfer File to Remote Server') {
+            steps {
+                script {
+                    // Transfer the file using scp
+                    sh '''
+                    echo "Transferring file to remote server..."
+                    scp -o StrictHostKeyChecking=no /tmp/testfile.txt selcia@192.168.119.132:/home/selcia/
+                    '''
+                }
+            }
+        }
+        stage('Verify Transfer') {
+            steps {
+                script {
+                    // Verify the file on the remote server
+                    sh '''
+                    echo "Verifying file on remote server..."
+                    ssh -o StrictHostKeyChecking=no selcia@192.168.119.132 ls -l /home/selcia/testfile.txt
+                    '''
+                }
+            }
+        }
   }
 }
