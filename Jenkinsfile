@@ -1,18 +1,18 @@
 pipeline{
   agent any
   stages{
-    stage('Enable SSH') {
-      steps {
-        script {
-            // Enable SSH service
-            sh '''
-            echo "Enabling SSH service..."
-            sudo systemctl enable ssh
-            sudo systemctl start ssh
-            '''
-        }
-      }
-    }
+    // stage('Enable SSH') {
+    //   steps {
+    //     script {
+    //         // Enable SSH service
+    //         sh '''
+    //         echo "Enabling SSH service..."
+    //         sudo systemctl enable ssh
+    //         sudo systemctl start ssh
+    //         '''
+    //     }
+    //   }
+    // }
     stage('Create Key') {
       steps {
         sh '''
