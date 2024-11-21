@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage('Create Key') {
       steps {
-        sh 'ssh-keygen -t rsa -b 2048 -f /home/selcia/.ssh/id_rsa -N'
+        sh 'ssh-keygen -t rsa -b 2048 -f /home/selcia/.ssh/id_rsa -N ""'
       }
     }
     stage('Copy Key') {
